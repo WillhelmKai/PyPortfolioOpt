@@ -5,7 +5,8 @@ from pypfopt import risk_models
 from pypfopt import expected_returns
 
 # Read in price data
-df = pd.read_csv("tests/stock_prices.csv", parse_dates=True, index_col="date")
+add = "C:\\Users\\willh\\Documents\\GitHub\\PyPortfolioOpt\\HSI_components_data\\"
+df = pd.read_csv(add+"HSI_components.csv", parse_dates=True, index_col="Date")
 
 # Calculate expected returns and sample covariance
 mu = expected_returns.mean_historical_return(df)
@@ -16,6 +17,6 @@ ef = EfficientFrontier(mu, S)
 raw_weights = ef.max_sharpe()
 cleaned_weights = ef.clean_weights()
 
-print(np.fromiter(cleaned_weights.values(), dtype=float))
+print(cleaned_weights)
 print("  ")
 ef.portfolio_performance(verbose=True)
