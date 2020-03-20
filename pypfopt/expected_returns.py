@@ -67,7 +67,32 @@ def mean_historical_return(prices, frequency=252):
         warnings.warn("prices are not in a dataframe", RuntimeWarning)
         prices = pd.DataFrame(prices)
     returns = returns_from_prices(prices)
+    # if boostrap:
+    #     returns = returns.sample(int(proportion*len(returns)), replace = True)#.sort_values(by=['Date'])
+    
     return returns.mean() * frequency
+
+def boostrap(prices,proportion, frequency=252):
+    """
+    Calculate annualised mean (daily) historical return from input (daily) asset prices.
+
+    :param prices: adjusted closing prices of the asset, each row is a date
+                   and each column is a ticker/id.
+    :type prices: pd.DataFrame
+    :param frequency: number of time periods in a year, defaults to 252 (the number
+                      of trading days in a year)
+    :type frequency: int, optional
+    :return: annualised mean (daily) return for each asset
+    :rtype: pd.Series
+    """
+    if not isinstance(prices, pd.DataFrame):
+        warnings.warn("prices are not in a dataframe", RuntimeWarning)
+        prices = pd.DataFrame(prices)
+    
+    returns = returns_from_prices(prices)
+    returns = returns.sample(int(proportion*len(returns)), replace = True)#.sort_values(by=['Date'])
+    
+    return returns.mean() * frequency, returns.cov() * frequency
 
 
 def ema_historical_return(prices, frequency=252, span=500):
