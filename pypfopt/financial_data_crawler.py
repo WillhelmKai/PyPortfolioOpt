@@ -37,7 +37,3 @@ class financial_data_crawler(object):
         f = open(self.add+self.stock_name[i]+".csv",'w')
         f.write(data.text)
         f.close()
-
-
-    def format_as_pypfopt_inputs(self, file_name):
-        print("   ")

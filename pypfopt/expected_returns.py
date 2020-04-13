@@ -19,6 +19,8 @@ Additionally, we provide utility functions to convert from returns to prices and
 
 import warnings
 import pandas as pd
+import arch.data.frenchdata
+import numpy as np
 
 
 def returns_from_prices(prices):
@@ -74,6 +76,7 @@ def mean_historical_return(prices, frequency=252):
 
 def boostrap(prices,proportion, frequency=252):
     """
+    ********************************TBD**************************
     Calculate annualised mean (daily) historical return from input (daily) asset prices.
 
     :param prices: adjusted closing prices of the asset, each row is a date
@@ -116,3 +119,53 @@ def ema_historical_return(prices, frequency=252, span=500):
         prices = pd.DataFrame(prices)
     returns = returns_from_prices(prices)
     return returns.ewm(span=span).mean().iloc[-1] * frequency
+
+# def calculate_plot(EF):
+    """
+    ********************************TBD**************************
+    Calculate annualised mean (daily) historical return from input (daily) asset prices.
+
+    :param prices: adjusted closing prices of the asset, each row is a date
+                   and each column is a ticker/id.
+    :type prices: pd.DataFrame
+    :param frequency: number of time periods in a year, defaults to 252 (the number
+                      of trading days in a year)
+    :type frequency: int, optional
+    :return: annualised mean (daily) return for each asset
+    :rtype: pd.Series
+    """
+    # EF.
+
+    
+    # return 0
+
+def block_boostrap(prices,proportion, frequency=252):
+    """
+    ********************************TBD**************************
+    Calculate annualised mean (daily) historical return from input (daily) asset prices.
+
+    :param prices: adjusted closing prices of the asset, each row is a date
+                   and each column is a ticker/id.
+    :type prices: pd.DataFrame
+    :param frequency: number of time periods in a year, defaults to 252 (the number
+                      of trading days in a year)
+    :type frequency: int, optional
+    :return: annualised mean (daily) return for each asset
+    :rtype: pd.Series
+    """
+    if not isinstance(prices, pd.DataFrame):
+        warnings.warn("prices are not in a dataframe", RuntimeWarning)
+        prices = pd.DataFrame(prices)
+    
+    returns = returns_from_prices(prices)
+    window_size=3
+    sample_time = 10
+    blocked_df = []
+    for i in range(0,len(returns)-window_size):
+      blocked_df += [returns[i:i+window_size]]
+    index = np.random.randint(0,len(blocked_df)-1,sample_time)
+    blocked_df = np.array(blocked_df)[index]
+    print(blocked_df)
+    # print(blocked_df)
+    # returns = returns.sample(int(proportion*len(returns)), replace = True)#.sort_values(by=['Date'])
+    return returns.mean() * frequency, returns.cov() * frequency
