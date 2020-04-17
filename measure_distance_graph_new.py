@@ -19,7 +19,7 @@ def modeling(t_set,boostrap=False, proportion=0, target_return=0):
     S = risk_models.sample_cov(t_set)
     # print(mu[0])
   # Optimise for maximal Sharpe ratio
-  ef = EfficientFrontier(mu, S, gamma = 0.9)
+  ef = EfficientFrontier(mu, S, gamma = 0)
   # raw_weights = ef.max_sharpe(risk_free_rate=0)
   ef.efficient_return(target_return)
   cleaned_weights = ef.clean_weights()
@@ -85,7 +85,7 @@ for i in np.arange(min_return,max_return,stride):
 naive_weights = ef.clean_weights()
 
 
-T = 1000
+T = 500
 p = 0.5
 weights =dict()
 acc = dict()
@@ -127,7 +127,7 @@ for h in history:
     for i in range(0,len(history[h])):
         key += [np.linalg.norm(history[h][i]-unaveraged_weights[h])]
     distance = [x for _,x in sorted(zip(key,history[h]))]
-    distance = distance[:int(len(distance)*0.05)]
+    distance = distance[:int(len(distance)*0.5)]
     distanced_weight = sum([d for d in distance])/max(len(distance),1)
     account = 0
     for w in naive_weights:
