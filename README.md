@@ -33,6 +33,8 @@
 
 **Efficient Frontier (Markowitz and Distance selection): measure_distance.py**
 
+** HSI components data: ./HSI_components_data**
+
 
 PyPortfolioOpt is a library that implements portfolio optimisation methods, including
 classical efficient frontier techniques and Black-Litterman allocation, as well as more
