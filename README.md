@@ -25,11 +25,13 @@
 </p>
 
 <!-- content -->
-Efficient Frontier (Markowitz and Boostrapping): graph.py
+**Change data directory in every file before running**
 
-Portfolio Pie Chart(Markowitz and Boostrapping): experiment.py
+**Efficient Frontier (Markowitz and Boostrapping): graph.py**
 
-Efficient Frontier (Markowitz and Distance selection): measure_distance.py
+**Portfolio Pie Chart(Markowitz and Boostrapping): experiment.py**
+
+**Efficient Frontier (Markowitz and Distance selection): measure_distance.py**
 
 
 PyPortfolioOpt is a library that implements portfolio optimisation methods, including
