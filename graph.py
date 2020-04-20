@@ -43,8 +43,8 @@ rows = len(df)
 num_of_stocks = df.shape[1]
 
 
-t_set = df[:int((9/12)*rows)]
-v_set = df[int((9/12)*rows):]
+t_set = df[:int((11/12)*rows)]
+v_set = df[int((11/12)*rows):]
 
 
 #get the min return, max return and get the return 
@@ -80,7 +80,7 @@ naive_weights = ef.clean_weights()
 
 
 
-T = 1
+T = 500
 p = 0.5
 weights =dict()
 acc = dict()
@@ -116,7 +116,7 @@ for w in weights:
 fig, ax = plt.subplots()
 ax.plot(np.array(expected_sigma), np.array(expected_mu),'r',label='Expected PERF')
 ax.plot(np.array(a_sigma), np.array(a_mu),label='Actual PERF')
-# ax.plot(np.array(b_sig), np.array(b_mu),label='Boostrap PERF',color='g')
+ax.plot(np.array(b_sig), np.array(b_mu),label='Boostrap PERF',color='g')
 
 ax.set(xlabel='Risk', ylabel='Return',
        title='Efficient Frontier')

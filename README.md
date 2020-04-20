@@ -25,6 +25,12 @@
 </p>
 
 <!-- content -->
+Efficient Frontier (Markowitz and Boostrapping): graph.py
+
+Portfolio Pie Chart(Markowitz and Boostrapping): experiment.py
+
+Efficient Frontier (Markowitz and Distance selection): measure_distance.py
+
 
 PyPortfolioOpt is a library that implements portfolio optimisation methods, including
 classical efficient frontier techniques and Black-Litterman allocation, as well as more

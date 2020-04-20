@@ -69,7 +69,7 @@ print("for Naive MK way")
 print("Expected mu: %f, sigma: %f, sharpe %f" %(expected_mu, expected_sigma, expected_sharpe))
 print("Actual mu: %f, sigma: %f, sharpe %f\n" %(actual_mu, actual_sigma, actual_sharpe))
 
-T = 1000
+T = 500
 p = 0.5
 mu, sigma, sharpe,  weight= [],[],[],np.zeros(num_of_stocks)
 history = []
@@ -114,18 +114,18 @@ print("Actual mu: %f, sigma: %f, sharpe %f\n" %(actual_mu, actual_sigma, actual_
 # ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 # plt.show()
 
-for w in naive_weights:
-    if naive_weights[w] != 0.0:
-        temp = []
-        for h in history:
-            temp += [h[w]]
+# for w in naive_weights:
+#     if naive_weights[w] != 0.0:
+#         temp = []
+#         for h in history:
+#             temp += [h[w]]
 
-        fig, ax = plt.subplots()
-        ax.hist(np.array(temp), bins = 50)
-        ax.axvline(x=np.mean(np.array(temp)), color='r', linestyle='dashed', linewidth=2, label="Mean")
-        ax.axvline(x=np.array(no_averaged_weight[w]), color='b', linestyle='dashed', linewidth=2, label="Markowitz")
-        ax.set(xlabel='Weights (%)', ylabel='Frequency(1000 Times)',title='Max Sharp Portfolio Weights Distribution for '+str(w))
-        ax.legend()
-        fig.savefig(str(w)+".png")
-#         # plt.show()
+#         fig, ax = plt.subplots()
+#         ax.hist(np.array(temp), bins = 50)
+#         ax.axvline(x=np.mean(np.array(temp)), color='r', linestyle='dashed', linewidth=2, label="Mean")
+#         ax.axvline(x=np.array(no_averaged_weight[w]), color='b', linestyle='dashed', linewidth=2, label="Markowitz")
+#         ax.set(xlabel='Weights (%)', ylabel='Frequency(1000 Times)',title='Max Sharp Portfolio Weights Distribution for '+str(w))
+#         ax.legend()
+#         fig.savefig(str(w)+".png")
+        # plt.show()
         
